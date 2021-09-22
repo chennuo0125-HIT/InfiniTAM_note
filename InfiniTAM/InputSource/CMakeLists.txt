@@ -7,6 +7,7 @@
 ###########################
 
 SET(targetname InputSource)
+add_compile_options(-std=c++11)
 
 #####################################
 # Offer support for input mirroring #

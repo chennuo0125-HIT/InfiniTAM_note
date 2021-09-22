@@ -2,14 +2,21 @@
 
 #pragma once
 
+#include <memory>
 #include "ImageSourceEngine.h"
 
 #ifdef COMPILE_WITH_RealSense2
-namespace rs2 { class pipeline; class context; class device; }
+namespace rs2
+{
+	class pipeline;
+	class context;
+	class device;
+}
 #endif
 
-namespace InputSource {
-	
+namespace InputSource
+{
+
 	class RealSense2Engine : public BaseImageSourceEngine
 	{
 	private:
@@ -22,17 +29,16 @@ namespace InputSource {
 #endif
 
 		Vector2i imageSize_rgb, imageSize_d;
-		
+
 	public:
 		RealSense2Engine(const char *calibFilename, bool alignColourWithDepth = true,
-						 Vector2i imageSize_rgb = Vector2i(640, 480), Vector2i imageSize_d = Vector2i(640, 480));
+										 Vector2i imageSize_rgb = Vector2i(640, 480), Vector2i imageSize_d = Vector2i(640, 480));
 		~RealSense2Engine();
-		
+
 		bool hasMoreImages(void) const;
 		void getImages(ITMUChar4Image *rgb, ITMShortImage *rawDepth);
 		Vector2i getDepthImageSize(void) const;
 		Vector2i getRGBImageSize(void) const;
 	};
-	
-}
 
+}
